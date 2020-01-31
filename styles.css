@@ -1,0 +1,12 @@
+.input-field {
+  position: relative;
+}
+
+span {
+  background: #ea7d84;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  opacity: 0.8;
+  transition: all 0.4s;
+}

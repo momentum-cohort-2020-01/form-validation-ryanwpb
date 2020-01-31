@@ -1,9 +1,8 @@
 let form = document.querySelector("#parking-form");
 let fields = document.querySelectorAll(".field");
-// let fieldCont = document.querySelectorAll(".input-field");
+let fieldCont = document.querySelectorAll(".input-field");
 let inputName = document.querySelector("#name");
 let cvv = document.querySelector("#cvv");
-console.log(cvv);
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -11,20 +10,26 @@ form.addEventListener("submit", function(event) {
   console.log(event.target);
   for (let field of fields) {
     if (field.value.length === 0 || field.value === "") {
-      field.parentElement.classList.add("input-invalid");
-      let span = document.createElement("span");
-      field.parentElement.appendChild(span);
-      span.classList.add("error");
-      span.innerHTML = "Not valid form entry.";
-    } else if (field.value.length >= 1) {
+      if (field.parentElement.classList.contains("input-invalid")) {
+      } else {
+        field.parentElement.classList.add("input-invalid");
+        let span = document.createElement("span");
+        span.classList.add("error");
+        span.innerHTML = "Field is required.";
+        field.parentElement.appendChild(span);
+      }
+    } else {
       field.parentElement.classList.add("input-valid");
-      //   field.parentElement.removeChild(span);
+      let required = field.parentElement.querySelector("span");
+      if (required) {
+        field.parentElement.removeChild(required);
+      }
+      let YearRegex = "^(0|[1-9][0-9]*)$";
+      console.log(YearRegex);
     }
   }
 });
 
-// formData
-// let data = new FormData(document.querySelector("#parking-form"));
-// for (let val of data.values()) {
-//   console.log(val);
-// }
+form.addEventListener("input", function(event) {
+  console.log(event);
+});
