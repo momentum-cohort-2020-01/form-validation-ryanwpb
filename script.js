@@ -1,6 +1,6 @@
 let form = document.querySelector("#parking-form");
-let inputs = document.querySelectorAll("input");
-let fields = document.querySelectorAll(".input-field");
+let fields = document.querySelectorAll(".field");
+// let fieldCont = document.querySelectorAll(".input-field");
 let inputName = document.querySelector("#name");
 let cvv = document.querySelector("#cvv");
 console.log(cvv);
@@ -9,14 +9,17 @@ form.addEventListener("submit", function(event) {
   event.preventDefault();
   console.log(event);
   console.log(event.target);
-  for (let i = 0; i < fields.length; i++) {
-    if (inputs[i].value.length === 0) {
-      fields[i].classList.add("input-invalid");
+  for (let field of fields) {
+    if (field.value.length === 0 || field.value === "") {
+      field.parentElement.classList.add("input-invalid");
       let span = document.createElement("span");
-      fields[i].appendChild(span);
+      field.parentElement.appendChild(span);
       span.classList.add("error");
       span.innerHTML = "Not valid form entry.";
-    } else fields[i].classList.add("input-valid");
+    } else if (field.value.length >= 1) {
+      field.parentElement.classList.add("input-valid");
+      //   field.parentElement.removeChild(span);
+    }
   }
 });
 
