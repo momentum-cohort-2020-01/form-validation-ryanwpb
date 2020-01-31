@@ -31,5 +31,6 @@ form.addEventListener("submit", function(event) {
 });
 
 form.addEventListener("input", function(event) {
-  console.log(event);
+  let carYear = document.querySelector("#car-year");
+  console.log(carYear);
 });
