@@ -24,13 +24,15 @@ form.addEventListener("submit", function(event) {
       if (required) {
         field.parentElement.removeChild(required);
       }
-      let YearRegex = "^(0|[1-9][0-9]*)$";
-      console.log(YearRegex);
     }
   }
-});
-
-form.addEventListener("input", function(event) {
-  let carYear = document.querySelector("#car-year");
-  console.log(carYear);
+  let carParent = document.querySelector("#car-year").parentElement;
+  let carYear = document.querySelector("#car-year").value;
+  if (isNaN(carYear)) {
+    let yearError = document.createElement("span");
+    yearError.classList.add("error");
+    yearError.innerHTML = "Field must be a number";
+    carParent.appendChild(yearError);
+    console.log(carParent);
+  }
 });
