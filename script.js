@@ -34,10 +34,12 @@ form.addEventListener("submit", function(event) {
     yearError.innerHTML = "Field must be a number";
     carParent.appendChild(yearError);
     console.log(carParent);
-  } else if (carYear <= 1900) {
+  } else if (carYear <= 1900 || carYear > 2020) {
     let yearError = document.createElement("span");
     yearError.classList.add("error");
-    yearError.innerHTML = "Your car is too old to park here!";
+    yearError.innerHTML = "Year not valid!";
     carParent.appendChild(yearError);
+  } else if (carYear >= 1900 || carYear < 2020) {
+    carParent.removeChild(yearError);
   }
 });
