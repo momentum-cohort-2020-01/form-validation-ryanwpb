@@ -2,7 +2,6 @@ let form = document.querySelector("#parking-form");
 let fields = document.querySelectorAll(".field");
 let fieldCont = document.querySelectorAll(".input-field");
 let inputName = document.querySelector("#name");
-let cvv = document.querySelector("#cvv");
 let yearError = document.createElement("span");
 
 form.addEventListener("submit", function(event) {
@@ -33,13 +32,16 @@ form.addEventListener("submit", function(event) {
     yearError.classList.add("error");
     yearError.innerHTML = "Field must be a number";
     carParent.appendChild(yearError);
-    console.log(carParent);
   }
   if (carYear <= 1900 || carYear > 2020) {
     yearError.classList.add("error");
     yearError.innerHTML = "Year not valid!";
     carParent.appendChild(yearError);
-  } else if (carYear >= 1900 || carYear <= 2020) {
-    carParent.removeChild(yearError);
+  } else if (carYear >= 1900 || carYear < 2020) {
+    yearError.parentElement.removeChild(yearError);
+  }
+  let cvv = document.querySelector("#cvv").value;
+  if (isNaN(cvv) && cvv.length !== 3) {
+    alert("invalid");
   }
 });
