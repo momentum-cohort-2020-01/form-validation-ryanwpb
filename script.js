@@ -3,6 +3,7 @@ let fields = document.querySelectorAll(".field");
 let fieldCont = document.querySelectorAll(".input-field");
 let inputName = document.querySelector("#name");
 let yearError = document.createElement("span");
+let dayError = document.createElement("span");
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -40,8 +41,13 @@ form.addEventListener("submit", function(event) {
   } else if (carYear >= 1900 || carYear < 2020) {
     yearError.parentElement.removeChild(yearError);
   }
-  let cvv = document.querySelector("#cvv").value;
-  if (isNaN(cvv) && cvv.length !== 3) {
-    alert("invalid");
+  let dayParent = document.querySelector("#days").parentElement;
+  let dayNum = document.querySelector("#days").value;
+  if (isNaN(dayNum)) {
+    dayError.classList.add("error");
+    dayError.innerHTML = "Entry must be a number";
+    dayParent.appendChild(dayError);
+  } else {
+    dayParent.removeChild(dayError);
   }
 });
