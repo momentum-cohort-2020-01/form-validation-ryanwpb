@@ -7,8 +7,6 @@ let dayError = document.createElement("span");
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
-  console.log(event);
-  console.log(event.target);
   for (let field of fields) {
     if (field.value.length === 0 || field.value === "") {
       if (field.parentElement.classList.contains("input-invalid")) {
@@ -45,9 +43,15 @@ form.addEventListener("submit", function(event) {
   let dayNum = document.querySelector("#days").value;
   if (isNaN(dayNum)) {
     dayError.classList.add("error");
-    dayError.innerHTML = "Entry must be a number";
+    dayError.innerHTML = "Entry must be a number between 1 & 30";
+    dayParent.appendChild(dayError);
+  } else if (dayNum > 30 || dayNum == 0) {
+    dayError.classList.add("error");
+    dayError.innerHTML = "Entry must be a number between 1 & 30";
     dayParent.appendChild(dayError);
   } else {
-    dayParent.removeChild(dayError);
+    return;
   }
+  const cvvInput = document.querySelector("#cvv");
+  console.log(cvvInput);
 });
