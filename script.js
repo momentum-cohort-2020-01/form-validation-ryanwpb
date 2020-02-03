@@ -52,6 +52,17 @@ form.addEventListener("submit", function(event) {
   } else {
     return;
   }
-  const cvvInput = document.querySelector("#cvv");
+  const cvvInput = document.querySelector("#cvv").value;
+  let cvvError = document.createElement("span");
+  let cvvParent = document.querySelector("#cvv").parentElement;
   console.log(cvvInput);
+  if (cvvInput.length > 3) {
+    cvvError.innerHTML = "Security Code Must be 3 numbers.";
+    cvvParent.appendChild(cvvError);
+  } else if (isNaN(cvvInput)) {
+    cvvError.innerHTML = "Security Code Must be a number.";
+    cvvParent.appendChild(cvvError);
+  } else {
+    return;
+  }
 });
